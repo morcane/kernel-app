@@ -1,21 +1,33 @@
-name: Build
-on: [push, workflow_dispatch]
+name: Build Kernel APK
+on:
+push:
+branches: [ main, master ]
+workflow_dispatch:
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-      - run: |
-          keytool -genkey -v -keystore debug.keystore -storepass android -alias androiddebugkey -keypass android -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Debug"
-          cp debug.keystore app/debug.keystore || true
-          chmod +x gradlew
-          ./gradlew assembleDebug --no-daemon
-      - uses: actions/upload-artifact@v4
-        with:
-          name: APK
-          path: app/build/outputs/apk/debug/*.apk
-          
+build:
+runs-on: ubuntu-latest
+steps:
+- name: Checkout Code
+uses: actions/checkout@v4
+- name: Set up JDK 17
+uses: actions/setup-java@v4
+with:
+java-version: '17'
+distribution: 'temurin'
+- name: Prepare Keystore and Build APK
+run: |
+keytool -genkey -v -keystore debug.keystore -storepass android -alias androiddebugkey -keypass android -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Debug"
+mkdir -p app ~/.android
+cp debug.keystore app/debug.keystore || true
+cp debug.keystore ~/.android/debug.keystore || true
+if [ ! -f "gradlew" ]; then
+curl -fsSL https://raw.githubusercontent.com/gradle/gradle/master/gradlew -o gradlew
+fi
+chmod +x gradlew
+./gradlew assembleDebug --no-daemon --stacktrace
+- name: Upload APK
+uses: actions/upload-artifact@v4
+with:
+name: Kernel-Debug-APK
+path: app/build/outputs/apk/debug/*.apk
+retention-days: 7
