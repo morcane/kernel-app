@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Outer Hexagonal / Octagonal Tech Ring Frame -->
+    <path
+        android:strokeColor="#3300F298"
+        android:strokeWidth="1.5"
+        android:fillColor="#00000000"
+        android:pathData="M38,28 L70,28 L84,42 L84,66 L70,80 L38,80 L24,66 L24,42 Z" />
+
+    <!-- Corner Alignment Crosshairs -->
+    <path
+        android:strokeColor="#6600F298"
+        android:strokeWidth="2"
+        android:fillColor="#00000000"
+        android:pathData="M34,32 L34,28 L38,28 M70,28 L74,28 L74,32 M74,76 L74,80 L70,80 M38,80 L34,80 L34,76" />
+
+    <!-- Middle Neural Orbit Ring -->
+    <path
+        android:strokeColor="#99FFFFFF"
+        android:strokeWidth="2"
+        android:fillColor="#00000000"
+        android:pathData="M54,54m-20,0a20,20 0 1,0 40,0a20,20 0 1,0 -40,0" />
+
+    <!-- Inner Core Radiant Ring with Gaps -->
+    <path
+        android:strokeColor="#00F298"
+        android:strokeWidth="3"
+        android:strokeLineCap="round"
+        android:fillColor="#00000000"
+        android:pathData="M54,39 A15,15 0 0,1 69,54 M69,54 A15,15 0 0,1 54,69 M54,69 A15,15 0 0,1 39,54 M39,54 A15,15 0 0,1 54,39" />
+
+    <!-- Central Computing Nucleus / Diamond Node -->
+    <path
+        android:fillColor="#00F298"
+        android:pathData="M54,46 L62,54 L54,62 L46,54 Z" />
+
+    <!-- Pure Core Light Point -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M54,51 L57,54 L54,57 L51,54 Z" />
+
+    <!-- Horizontal & Vertical Ray Nodes -->
+    <path
+        android:fillColor="#00F298"
+        android:pathData="M54,23 L55.5,26 L52.5,26 Z M54,85 L52.5,82 L55.5,82 Z M23,54 L26,52.5 L26,55.5 Z M85,54 L82,55.5 L82,52.5 Z" />
+</vector>
